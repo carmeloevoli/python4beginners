@@ -16,6 +16,8 @@ python helloworld.py
 
 - Show console mode vs script mode (pro: Jupyter notebooks)
 
+- Few words about `virtualenv`
+
 - To install libraries we use pip:
 
 ```
