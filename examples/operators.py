@@ -1,10 +1,11 @@
-
-a = 10
-b = 5
+# variable assignment
+a, b = 10, 5
+a, b = b, a
 c = a + b
+
 print(c)
 
-# arithmetic op.:
+# arithmetic operators:
 # Addition: +
 # Subtraction: -
 # Multiplication: *
@@ -13,15 +14,16 @@ print(c)
 # Exponentiation: **
 # Floor division: //
 
-# assignment op.:
-x = 5
-x = x + 3
-x += 3
+x = 18
+x = x - 2
+x -= 2
 
-x = x ** 3
+x = x ** 3 # better using numpy
 x **= 3
 
-# comparison op.:
+print(x)
+
+# comparison operators:
 # Equal: ==
 # Not equal: !=
 # Greater than: >
@@ -29,7 +31,7 @@ x **= 3
 # Greater than or equal to: >=
 # Less than or equal to: <=
 
-# logical o.:
+# logical operators:
 # and
 # or
 # not
@@ -38,24 +40,19 @@ x = 5
 print(x > 3 and x < 10)
 print(3 < x < 10)
 
-# identiy op.:
+# identiy operators:
 # is
 # is not
 
-a = 'Hello'
-b = 'HELLO'
-c = 'Hello'
+a = 'Freghete'
+b = 'Ofreghete'
+c = 'Freghete'
 
 print(a is c)
 print(a is b)
+print(a is not b)
 
-a = a.lower()
-print(a)
-b = b.lower()
-print(b)
-print(a is b)
-
-# membership op.:
+# membership operators:
 # in
 # not in
 a = 'Hello world'
@@ -63,6 +60,6 @@ b = 'Hello'
 
 print(b in a)
 
-Europe = ['Italy', 'France', 'Germany', 'Portugal', 'Spain', 'Belgium', 'Slovenia']
+Europe = ['Italy', 'France', 'Germany', 'Portugal', 'Spain', 'Belgium', 'Slovenia'] # list
 
-print ('Britain' in 'Eurpore')
+print ('Britain' in Europe)
