@@ -21,6 +21,12 @@ print (a.ndim)
 print (a.size)
 print (a.itemsize) # the size in byte of each element
 
+a = np.array([1,2,3,4,5], dtype=np.int64)
+print (a.dtype, a.itemsize)
+
+a = np.array([1,2,3,4,5], dtype=np.float32)
+print (a.dtype, a.itemsize)
+
 # 2.1 access
 
 print (a[0])
@@ -199,6 +205,106 @@ print(d.shape)
 
 print(d is a)
 
+# 8. broadcasting
+
+a = np.array([[1,2,3],[4,5,6],[7,8,9],[10,11,12]])
+b = np.array([0,1,2])
+
+print (a + b)
+
+# 9. functions and axis
+a = np.array([[7,8,9,10,11,12,13,14],[15,16,17,18,19,20,21,22]])
+print (a.sum())
+print (a.sum(axis=None))
+print (a.sum(axis=0))
+print (a.sum(axis=1))
+
+print (a.mean())
+print (a.std())
+print (a.min())
+print (a.max())
+
+# 10. copying
+
+a = np.array([1,2,3])
+b = a # pointer!
+b[0] = -100
+print(a)
+
+a = np.array([1,2,3])
+b = a.copy()
+b[0] = -100
+print(a)
+
+# 11. generating arrays
+a = np.zeros((2,3)) # <- tuple
+print(a)
+
+b = np.ones((2,3))
+print(b)
+
+c = np.full((2,3), 5.0)
+print(c)
+
+d = np.eye(4) # identity!
+print(d)
+
+e = np.arange(10)
+print(e)
+
+f = np.linspace(0, 100, 5)
+print(f)
+
+g = np.logspace(-1, 2, 10)
+print(g)
+
+# 12. Linear algebra
+a = np.array([[1,2], [3,4]])
+eigenvalues, eigenvectors = np.linalg.eig(a)
+
+print(eigenvalues)
+print(eigenvectors) # !column vectors
+
+eigenvector_0 = eigenvectors[:,0]
+
+print(eigenvector_0)
+
+# 12.1 solving lineary systems
+
+A = np.array([[1, 1], [1.5, 4.]])
+b = np.array([2200, 5500])
+# Ax = b -> x = A^-1 * b
+
+x = np.linalg.inv(A).dot(b)
+print(x)
+
+x = np.linalg.solve(A,b) # faster!
+print(x)
+
+# 13. load file
+
+x = np.logspace(1, 4, 100)
+y = 2.8 * np.power(x / 100., -2.3)
+z = 1.2 * np.power(x / 100., -3.1)
+
+f = open("spectrum.txt", "w")
+for x_i, y_i, z_i in zip(x, y, z):
+    f.write("{:10.2e} {:10.2e} {:10.2e}\n".format(x_i, y_i, z_i))
+f.close()
+
+x, z = np.loadtxt("spectrum.txt", usecols=(0,2), unpack=True, skiprows=1) #, delimiter=',', dtype=np.float32)
+
+print (z)
 
 
+.append()
+.delete()
+.sort()
 
+￼chi2 = (1. / n.size()) * np.sum(np.square(predictions - measurements))
+
+np.save(filename, a)
+b  = np.load(filename)
+
+random.randint(10, size=(2,3)) #
+random.random() # 0,1
