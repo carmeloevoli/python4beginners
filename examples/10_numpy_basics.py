@@ -1,7 +1,6 @@
 # numpy tutorial
 # numpy is optmized for array and data handling, written in C
 
-
 # 1. installation
 #
 # pip install numpy
@@ -31,7 +30,6 @@ print (a.dtype, a.itemsize)
 
 print (a[0])
 a[1] = 7
-
 print (a)
 
 # 2.2 elementwise operations
@@ -44,6 +42,7 @@ c = a * b
 print (c.sum())
 
 # 3. NumPy vs Lists
+
 l = [1,2,3]
 v = np.array([1,2,3])
 
@@ -70,6 +69,7 @@ dot = v1 @ v2
 print (dot)
 
 # 4.1 Speed test comparison
+
 from timeit import default_timer as timer
 a = np.random.randn(1000)
 b = np.random.randn(1000)
@@ -104,7 +104,7 @@ print(t1/t2)
 
 # 5. Multidimensional array
 
-a = np.array([[1,2], [3,4]]) # 2D matrix (no forget the double square brackets!)
+a = np.array([[1,2], [3,4]]) # 2D matrix (not forget the double square brackets!)
 print (a)
 print (a.shape)
 
@@ -160,6 +160,7 @@ last_element = a[-1,-1]
 print (last_element)
 
 # 6.1 boolean indexing
+
 a = np.array([[1, 2], [3, 4], [5, 6]])
 print(a)
 
@@ -173,13 +174,15 @@ a = np.array([[1, 2], [3, 4], [5, 6]])
 print(a[a > 2])
 
 # np.where()
+# Return elements chosen from x depending on condition
 b = np.where(a > 2, a, -1)
 print(b)
 
 # np.argwhere()
+# Find the indices of array elements that are non-zero, grouped by element
 a = np.array([10,19,32,21,27,33,40])
-b = a[[2,4,6]]
 
+b = a[[2,4,6]] # use list index
 print(b)
 
 even = np.argwhere(a % 2 == 0).flatten()
@@ -187,6 +190,7 @@ print(even)
 print(a[even])
 
 # 7. reshape
+
 a = np.arange(1,7)
 print(a)
 
@@ -197,12 +201,12 @@ b = a.reshape(3,2)
 print(b)
 
 # 7.1 newaxis
+
 print(a.shape)
 
 d = a[np.newaxis,:]
 print(d)
 print(d.shape)
-
 print(d is a)
 
 # 8. broadcasting
@@ -213,6 +217,7 @@ b = np.array([0,1,2])
 print (a + b)
 
 # 9. functions and axis
+
 a = np.array([[7,8,9,10,11,12,13,14],[15,16,17,18,19,20,21,22]])
 print (a.sum())
 print (a.sum(axis=None))
@@ -237,6 +242,7 @@ b[0] = -100
 print(a)
 
 # 11. generating arrays
+
 a = np.zeros((2,3)) # <- tuple
 print(a)
 
@@ -258,7 +264,10 @@ print(f)
 g = np.logspace(-1, 2, 10)
 print(g)
 
+print(2. * np.power(g, -2.7))
+
 # 12. Linear algebra
+
 a = np.array([[1,2], [3,4]])
 eigenvalues, eigenvectors = np.linalg.eig(a)
 
@@ -283,28 +292,20 @@ print(x)
 
 # 13. load file
 
-x = np.logspace(1, 4, 100)
-y = 2.8 * np.power(x / 100., -2.3)
-z = 1.2 * np.power(x / 100., -3.1)
+x, y = np.loadtxt("demofile.txt", usecols=(0,1), unpack=True, skiprows=1) #, delimiter=',', dtype=np.float32)
+print (y)
 
-f = open("spectrum.txt", "w")
-for x_i, y_i, z_i in zip(x, y, z):
-    f.write("{:10.2e} {:10.2e} {:10.2e}\n".format(x_i, y_i, z_i))
-f.close()
+np.save("savefile", x)
 
-x, z = np.loadtxt("spectrum.txt", usecols=(0,2), unpack=True, skiprows=1) #, delimiter=',', dtype=np.float32)
+# 14. random routines
 
-print (z)
+predictions = np.random.randn(1000)
+measurements = np.random.randn(1000)
+assert(len(predictions) == len(measurements))
+chi2 = (1. / len(predictions)) * np.sum(np.square(predictions - measurements))
+print (chi2)
 
-
-.append()
-.delete()
-.sort()
-
-￼chi2 = (1. / n.size()) * np.sum(np.square(predictions - measurements))
-
-np.save(filename, a)
-b  = np.load(filename)
-
-random.randint(10, size=(2,3)) #
-random.random() # 0,1
+from scipy.stats import chi2
+prob = 0.95
+dof = 100
+print (chi2.ppf(prob, dof) / (dof - 1))
