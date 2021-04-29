@@ -1,2 +1,2 @@
-def sqrt(x):
+def halfit(x):
     return x / 2

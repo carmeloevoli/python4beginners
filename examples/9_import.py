@@ -13,4 +13,4 @@ print (pi)
 print (sqrt(64))
 
 import mymath as pluto
-print (pluto.sqrt(64))
+print (pluto.halfit(64))
